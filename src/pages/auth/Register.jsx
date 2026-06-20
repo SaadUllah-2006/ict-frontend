@@ -45,6 +45,7 @@ const Register = () => {
     setLoading(true);
     try {
       const { confirmPassword, ...payload } = form;
+      payload.semester = Number(payload.semester); // Convert string → number (required by backend)
       const res = await authService.register(payload);
       login(res.data.user, res.data.token);
       toast.success('Account created successfully! Welcome to SSUET Events.', 'Registration Successful');
